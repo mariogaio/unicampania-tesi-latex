@@ -1,0 +1,11 @@
+% ----------------------------------------------------------------------------
+% main.xmpdata -- metadati PDF/A (letto da pdfx solo se \pdfatrue in config.tex)
+% I valori arrivano da config.tex: NON serve modificare questo file.
+% Il nome deve restare uguale al file principale (main.tex -> main.xmpdata).
+% ----------------------------------------------------------------------------
+\Title{\TitoloTesi}
+\Author{\Candidato}
+\Language{it-IT}
+\Keywords{\ParoleChiaveTesi}
+\Publisher{Università degli Studi della Campania Luigi Vanvitelli}
+\Subject{\TipoTesi}

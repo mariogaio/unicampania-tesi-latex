@@ -1,0 +1,67 @@
+% ----------------------------------------------------------------------------
+% frontespizio.tex
+% Non serve modificarlo: legge tutti i dati da config.tex.
+% NOTA: l'intestazione e il layout sono un esempio, non un modello ufficiale
+% dell'Ateneo. Controlla sempre le indicazioni della tua Scuola/Segreteria.
+% ----------------------------------------------------------------------------
+\begin{titlepage}
+    \centering
+
+    % --- INTESTAZIONE ---
+    {\Large \textbf{UNIVERSITÀ DEGLI STUDI DELLA CAMPANIA}} \\
+    \vspace{0.2cm}
+    {\Large \textbf{``LUIGI VANVITELLI''}} \\
+
+    \vspace{1.2cm}
+
+    % --- LOGO ---
+    \ifx\FileLogo\empty\else
+      \includegraphics[width=0.50\textwidth]{\FileLogo} \\
+    \fi
+
+    \vspace{2cm}
+
+    % --- SCUOLA/CORSO E DIPARTIMENTO ---
+    {\Large \TipoCorso} \\
+    {\Large \textbf{\NomeCorso}} \\
+
+    \vspace{0.5cm}
+
+    {\Large \Dipartimento} \\
+
+    \vspace{2cm}
+
+    % --- TITOLO ---
+    {\Large \MakeUppercase{\TipoTesi}} \\
+    \vspace{1cm}
+    {\Large \textbf{\TitoloTesi}} \\
+
+    \vfill % Spinge il blocco successivo verso il fondo pagina
+
+    % --- RELATORE E CANDIDATO ---
+    \begin{minipage}[t]{0.45\textwidth}
+        \begin{flushleft} \large
+            \emph{Relatore:}\\
+            \Relatore
+            \ifx\Correlatore\empty\else
+              \\[0.8em]
+              \emph{Correlatore:}\\
+              \Correlatore
+            \fi
+        \end{flushleft}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \begin{flushright} \large
+            \emph{Candidato:} \\
+            \Candidato \\
+            Matr. \Matricola
+        \end{flushright}
+    \end{minipage}
+
+    \vspace{1.5cm}
+
+    % --- ANNO ACCADEMICO ---
+    {\large Anno Accademico \AnnoAccademico}
+
+\end{titlepage}

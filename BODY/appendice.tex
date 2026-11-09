@@ -1,0 +1,24 @@
+% ----------------------------------------------------------------------------
+% BODY/appendice.tex -- appendice di esempio
+% Dopo \appendix in main.tex i capitoli diventano "Appendice A", "B", ...
+% ----------------------------------------------------------------------------
+\chapter{Materiale supplementare}
+\label{app:esempio}
+
+\section{Tabella supplementare}
+
+La \cref{tab:supp_esempio} mostra una tabella supplementare di esempio.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Esempio di tabella supplementare (dati fittizi).}
+  \label{tab:supp_esempio}
+  \begin{tabular}{lll}
+    \toprule
+    Variabile & Descrizione & Esempio \\
+    \midrule
+    Anno & Anno di pubblicazione & 2024 \\
+    Fonte & Origine dei dati & Registro X \\
+    \bottomrule
+  \end{tabular}
+\end{table}

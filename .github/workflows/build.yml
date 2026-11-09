@@ -1,0 +1,37 @@
+name: Compila e valida PDF/A
+
+# Compila main.pdf con pdfLaTeX + biber e verifica la conformita' PDF/A-1b con veraPDF.
+# Se nel tuo progetto hai impostato \pdfafalse in config.tex, elimina lo step "Valida PDF/A-1b".
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scarica il repository
+        uses: actions/checkout@v4
+
+      - name: Compila con latexmk (pdfLaTeX + biber)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Valida PDF/A-1b con veraPDF
+        run: |
+          docker run --rm -v "$PWD:/data" verapdf/cli:v1.28.2 -f 1b --format text /data/main.pdf | tee verapdf-report.txt
+          # veraPDF stampa "PASS <file>" se il documento e' conforme, "FAIL <file>" altrimenti
+          grep -q '^PASS' verapdf-report.txt
+
+      - name: Carica il PDF come artefatto
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-pdf
+          path: |
+            main.pdf
+            verapdf-report.txt
+          if-no-files-found: ignore

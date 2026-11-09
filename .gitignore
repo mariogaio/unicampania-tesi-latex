@@ -1,0 +1,32 @@
+# File prodotti dalla compilazione LaTeX
+*.aux
+*.bbl
+*.bbl-SAVE-ERROR
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.upa
+*.upb
+*.xmpi
+latex*.fls
+_minted*/
+
+# Il PDF finale non si versiona (lo produce la CI come artefatto).
+# Togli questa riga se vuoi includerlo nel repository.
+main.pdf
+
+# Editor / sistema
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

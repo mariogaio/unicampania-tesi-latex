@@ -1,0 +1,276 @@
+% ============================================================================
+% main.tex -- Template di tesi in LaTeX (pdfLaTeX + biber), PDF/A-1b opzionale
+%
+% I DATI DELLA TESI (titolo, relatore, candidato, ...) E GLI INTERRUTTORI
+% SI MODIFICANO IN config.tex, NON QUI.
+%
+% Compilazione consigliata:   latexmk main.tex    (vedi README.md)
+% Con PDF/A attivo serve anche il file main.xmpdata (stesso nome di questo
+% file, estensione .xmpdata).
+% Il nome del file principale non deve avere spazi, accenti o caratteri speciali.
+% ============================================================================
+
+% Dati e interruttori della tesi (frontespizio, metadati, PDF/A, epigrafe)
+\input{config}
+
+% PDF/A-1 richiede al massimo la versione PDF 1.4: senza questa riga il PDF esce
+% in 1.7 pur dichiarando PDF/A-1b nei metadati. Deve stare PRIMA di \documentclass.
+\ifpdfa\pdfminorversion=4 \fi
+
+\documentclass[
+  a4paper,
+  oneside,        % Stampa solo fronte
+  open=right,     % I capitoli iniziano su qualsiasi pagina (niente pagine bianche)
+  fontsize=12pt   % Dimensione carattere
+]{scrreprt}
+
+% ----------------------------------------------------------------------------
+% Codifica dei font
+% ----------------------------------------------------------------------------
+% T1 gestisce bene gli accentati; textcomp serve per \texteuro (il simbolo €
+% digitato direttamente puo' non comparire con pdfLaTeX: usa \texteuro{}).
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+
+\usepackage{setspace}
+\onehalfspacing
+
+\addtokomafont{disposition}{\rmfamily} % titoli con lo stesso font del testo
+
+% Margini (modificali in base alle indicazioni)
+\usepackage[
+  left=3cm,
+  right=2cm,
+  top=3.5cm,
+  bottom=3.5cm,
+  footskip=1cm
+]{geometry}
+
+% ----------------------------------------------------------------------------
+% PDF/A-1b e hyperref
+% ----------------------------------------------------------------------------
+% pdfx carica internamente hyperref e legge i metadati da main.xmpdata
+% (che a sua volta legge i valori da config.tex).
+% Se in config.tex hai impostato \pdfafalse, si usa hyperref "normale".
+\ifpdfa
+  \usepackage[a-1b]{pdfx}
+\else
+  \usepackage{hyperref}
+  \providecommand{\sep}{, }
+  \hypersetup{
+    pdftitle    = {\TitoloTesi},
+    pdfauthor   = {\Candidato},
+    pdfkeywords = {\ParoleChiaveTesi},
+    pdflang     = {it-IT}
+  }
+\fi
+
+\hypersetup{
+  bookmarksnumbered   = true,        % Segnalibri con numeri dei capitoli/sezioni
+  bookmarksopen       = true,        % Albero dei segnalibri aperto
+  bookmarksopenlevel  = 0,           % Inizialmente solo i capitoli
+  bookmarksdepth      = 3,           % Segnalibri fino alle sottosezioni
+  pdfpagemode         = UseOutlines, % Barra laterale dei segnalibri all'apertura
+  pdfstartview        = Fit,
+  plainpages          = false,       % Evita conflitti tra numerazione romana e araba
+  colorlinks          = true,        % Link come testo colorato, non riquadri
+  linkcolor           = black,
+  citecolor           = black,
+  urlcolor            = black,
+  filecolor           = black
+}
+
+% ----------------------------------------------------------------------------
+% Lingua
+% ----------------------------------------------------------------------------
+% Deve corrispondere a \Language in main.xmpdata. L'inglese e' la lingua
+% secondaria (utile per l'abstract in inglese, se richiesto, o per terminologia
+% nel testo).
+\usepackage[english, main=italian]{babel}
+
+% ----------------------------------------------------------------------------
+% Tipografia, grafica, tabelle
+% ----------------------------------------------------------------------------
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{pdflscape}
+\usepackage{pdfpages}   % per includere PDF esterni (es. dichiarazioni firmate)
+\usepackage{caption}
+\usepackage{indentfirst}
+
+% ----------------------------------------------------------------------------
+% Piè di pagina con numero di pagina
+% ----------------------------------------------------------------------------
+\usepackage[automark, headsepline=false, footsepline=false]{scrlayer-scrpage}
+
+% Testo al centro del piè di pagina (es. \renewcommand{\currentreprint}{Bozza})
+\newcommand{\currentreprint}{}
+
+\defpairofpagestyles{reprint}{%
+  \clearpairofpagestyles
+  \ofoot*{\pagemark}                    % Numero di pagina a destra
+  \cfoot*{\footnotesize\currentreprint} % Testo opzionale al centro
+}
+
+% ----------------------------------------------------------------------------
+% Riferimenti incrociati intelligenti
+% ----------------------------------------------------------------------------
+% Scrivi \cref{fig:esempio} e LaTeX produce "Figura 1.1" da solo.
+\usepackage{cleveref}
+
+\crefname{table}{Tabella}{Tabelle}
+\Crefname{table}{Tabella}{Tabelle}
+\crefname{figure}{Figura}{Figure}
+\Crefname{figure}{Figura}{Figure}
+\crefname{appendix}{Appendice}{Appendici}
+\Crefname{appendix}{Appendice}{Appendici}
+\crefname{chapter}{Capitolo}{Capitoli}
+\Crefname{chapter}{Capitolo}{Capitoli}
+\crefname{section}{Sezione}{Sezioni}
+\Crefname{section}{Sezione}{Sezioni}
+\crefname{subsection}{Sezione}{Sezioni}
+\Crefname{subsection}{Sezione}{Sezioni}
+\crefname{subsubsection}{Sezione}{Sezioni}
+\Crefname{subsubsection}{Sezione}{Sezioni}
+\crefname{equation}{equazione}{equazioni}
+\Crefname{equation}{Equazione}{Equazioni}
+
+% ----------------------------------------------------------------------------
+% Bibliografia (biblatex + biber)
+% ----------------------------------------------------------------------------
+% csquotes evita avvisi di biblatex; style=english per virgolette alla inglese
+% (con main=italian altrimenti userebbe le virgolette basse).
+\usepackage[style=english]{csquotes}
+
+\usepackage[
+    backend=biber,
+    hyperref=true,
+    style=numeric-comp,   % citazioni numeriche [1-3]; per autore-anno: style=authoryear
+    sorting=none,         % numerazione in ordine di prima citazione
+    maxbibnames=10,
+    minbibnames=3,
+    giveninits=true,
+    isbn=false,
+    doi=true,
+    url=true,
+    eprint=false
+]{biblatex}
+
+% L'URL si stampa solo per le voci di tipo @online
+\AtEveryBibitem{%
+  \ifentrytype{online}{}{%
+    \clearfield{url}%
+    \clearfield{urldate}%
+  }%
+}
+
+% Titoli degli articoli senza virgolette
+\DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{#1}
+
+\addbibresource{bibliografia.bib}
+
+% ----------------------------------------------------------------------------
+% Epigrafe (pagina di citazioni): attivabile da config.tex con \epigrafetrue
+% ----------------------------------------------------------------------------
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{0.75\textwidth}
+\renewcommand{\textflush}{flushright} % testo allineato a destra
+\setlength{\epigraphrule}{0pt}        % nessuna riga tra testo e fonte
+
+% ----------------------------------------------------------------------------
+% Compilare solo alcuni capitoli (\includeonly)
+%
+% A cosa serve: mentre scrivi, compili solo i capitoli su cui stai lavorando.
+% La compilazione e' piu' veloce e i riferimenti agli altri capitoli
+% (numeri di pagina, figure, tabelle, sezioni) restano corretti.
+%
+% Come si usa:
+%   1. Compila prima l'intera tesi, una volta. Cosi' LaTeX crea i file .aux
+%      di tutti i capitoli, che servono a ricordare i loro numeri.
+%   2. Togli il % davanti a \includeonly qui sotto e lascia nella lista
+%      solo i capitoli che vuoi compilare (puoi anche lasciarne piu' di uno).
+%   3. Ricompila con "latexmk main.tex".
+%   4. PRIMA DELLA VERSIONE FINALE rimetti il % davanti a \includeonly
+%      (oppure elenca di nuovo tutti i capitoli). Se lo dimentichi, il PDF
+%      che consegni conterra' solo i capitoli elencati.
+%
+% Attenzione:
+%   - Scrivi i nomi esattamente come in \include, senza ".tex"
+%     (es. BODY/1_esempio). Se un nome e' sbagliato, quel capitolo viene
+%     saltato senza alcun errore.
+%   - Funziona solo con i capitoli caricati con \include, non con \input.
+%     Frontespizio e abstract usano \input, quindi vengono sempre composti.
+% ----------------------------------------------------------------------------
+%\includeonly{
+%  BODY/1_esempio,
+%  BODY/appendice
+%}
+
+\begin{document}
+\pagestyle{reprint}
+% Frontespizio, epigrafe e dedica (senza numero visibile) usano numerazione a lettere:
+% serve a dare ad hyperref destinazioni uniche (altrimenti "page.1" e "page.2"
+% verrebbero ripetute quando la numerazione riparte da capo).
+\pagenumbering{alph}
+
+% ---- Frontmatter ----
+\input{frontespizio}
+
+\ifepigrafe
+  \input{epigrafe}
+\fi
+
+\ifdedica
+  \input{dedica}
+\fi
+
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\input{abstract}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\ifabbreviazioni
+  \input{abbreviazioni}
+\fi
+
+\clearpage
+
+% ---- Main matter: numeri arabi ----
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% Capitoli con \include (non \input) per poter usare \includeonly.
+% Per aggiungere un capitolo: crea BODY/2_nome.tex e aggiungi qui sotto
+% \include{BODY/2_nome} (senza .tex).
+\include{BODY/1_esempio}
+
+\appendix
+% Da qui i capitoli diventano "Appendice A", "Appendice B", ecc.
+% Fa si' che \cref scriva "Appendice A" (e non "Capitolo A") per questi capitoli.
+\crefalias{chapter}{appendix}
+\include{BODY/appendice}
+
+% ---- Backmatter ----
+\printbibliography[title={Bibliografia}]
+
+% Ringraziamenti, in fondo alla tesi dopo la bibliografia
+\ifringraziamenti
+  \input{ringraziamenti}
+\fi
+
+% Dichiarazione di originalita' o simili:
+% \input{declaration}
+
+\end{document}

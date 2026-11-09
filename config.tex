@@ -1,0 +1,64 @@
+% ============================================================================
+% config.tex  --  QUI SI MODIFICANO I DATI DELLA TESI
+% ============================================================================
+% Compila questo file per primo: frontespizio, metadati del PDF (main.xmpdata)
+% e interruttori leggono tutto da qui. Non servono modifiche al frontespizio.
+%
+% ATTENZIONE: nei valori evita comandi LaTeX complessi (soprattutto in
+% \TitoloTesi e \Candidato, che finiscono anche nei metadati del PDF).
+% Le lettere accentate e l'apostrofo vanno bene; per le virgolette usa ' e ".
+% ============================================================================
+
+% ----------------------------------------------------------------------------
+% Dati del frontespizio e dei metadati del PDF
+% ----------------------------------------------------------------------------
+\newcommand{\TitoloTesi}{Titolo della tesi: sottotitolo se presente}
+\newcommand{\TipoTesi}{Tesi sperimentale di specializzazione}
+\newcommand{\TipoCorso}{Scuola di Specializzazione in}
+\newcommand{\NomeCorso}{Nome della Scuola di Specializzazione}
+\newcommand{\Dipartimento}{Dipartimento di Nome del Dipartimento}
+
+\newcommand{\Relatore}{Prof. Nome Cognome}
+% Correlatore: lascia vuoto (\newcommand{\Correlatore}{}) se non c'e'.
+\newcommand{\Correlatore}{}
+\newcommand{\Candidato}{Dott. Nome Cognome}
+\newcommand{\Matricola}{XX0000000}
+\newcommand{\AnnoAccademico}{AAAA/AAAA}
+
+% Metadati PDF aggiuntivi (usati da main.xmpdata). Le parole chiave si
+% separano con \sep, come nell'esempio.
+\newcommand{\ParoleChiaveTesi}{Parola chiave 1\sep Parola chiave 2\sep Parola chiave 3}
+
+% Logo dell'Ateneo (vedi FIGURE/README.md). Per rimuoverlo dal frontespizio
+% basta lasciare vuoto il valore: \newcommand{\FileLogo}{}
+% ATTENZIONE PDF/A: il file deve essere PNG/JPG/PDF senza canale alpha.
+\newcommand{\FileLogo}{FIGURE/logo_unicampania.png}
+
+% ----------------------------------------------------------------------------
+% Interruttori (\...true attiva, \...false disattiva)
+% ----------------------------------------------------------------------------
+% PDF/A-1b: formato per l'archiviazione a lungo termine, richiesto da alcune
+% biblioteche d'Ateneo. VERIFICA con la tua biblioteca se serve davvero.
+% Se lo disattivi, main.xmpdata viene ignorato e si usa un PDF normale.
+\newif\ifpdfa
+\pdfatrue
+
+% Pagine facoltative. Metti \...false per toglierle dal PDF.
+% Il testo si scrive nei rispettivi file.
+
+% Epigrafe: pagina di citazioni dopo il frontespizio (epigrafe.tex).
+\newif\ifepigrafe
+\epigrafetrue
+
+% Dedica: pagina con una dedica, dopo l'epigrafe (dedica.tex).
+\newif\ifdedica
+\dedicatrue
+
+% Ringraziamenti: in fondo alla tesi, dopo la bibliografia (ringraziamenti.tex).
+\newif\ifringraziamenti
+\ringraziamentitrue
+
+% Elenco delle abbreviazioni: dopo l'indice e gli elenchi di figure e tabelle
+% (abbreviazioni.tex).
+\newif\ifabbreviazioni
+\abbreviazionitrue
