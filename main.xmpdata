@@ -6,6 +6,8 @@
 \Title{\TitoloTesi}
 \Author{\Candidato}
 \Language{it-IT}
-\Keywords{\ParoleChiaveTesi}
+% NIENTE \Keywords: con PDF/A-1b, pdfx scrive le parole chiave solo nell'Info
+% dictionary e non in pdf:Keywords dell'XMP. veraPDF lo segnala come errore
+% (regola 6.7.3-5) e il PDF non risulta conforme.
 \Publisher{Università degli Studi della Campania Luigi Vanvitelli}
 \Subject{\TipoTesi}

@@ -71,6 +71,7 @@ Regole da ricordare quando il PDF/A è attivo:
 - Non togliere `\pdfminorversion=4` da `main.tex`. Senza, il PDF esce in versione 1.7 e non è più PDF/A-1b.
 - `main.xmpdata` deve avere lo stesso nome di `main.tex`. Se rinomini uno, rinomina anche l'altro.
 - Per l'euro scrivi `\texteuro{}`, non il carattere `€`.
+- **Non aggiungere `\Keywords` a `main.xmpdata`.** `pdfx` scrive le parole chiave solo in una parte dei metadati, e veraPDF segnala il PDF come non conforme (regola 6.7.3-5, verificato). Titolo, autore, lingua, editore e oggetto sono invece inclusi.
 - Due avvisi in compilazione sono normali e si possono ignorare: `xcolor: option hyperref obsolete` e `pdfx: Setting all color commands to rgb`.
 
 ## Citazioni e riferimenti
