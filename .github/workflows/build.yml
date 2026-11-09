@@ -22,9 +22,12 @@ jobs:
 
       - name: Valida PDF/A-1b con veraPDF
         run: |
-          docker run --rm -v "$PWD:/data" verapdf/cli:v1.28.2 -f 1b --format text -v /data/main.pdf | tee verapdf-report.txt
-          # veraPDF stampa "PASS <file>" se il documento e' conforme, "FAIL <file>" altrimenti
-          grep -q '^PASS' verapdf-report.txt
+          # Report completo (formato MRR/XML) nel file; "|| true" cosi' il report resta anche se non conforme
+          docker run --rm -v "$PWD:/data" verapdf/cli:v1.28.2 -f 1b --format mrr /data/main.pdf > verapdf-report.xml || true
+          # Mostra nel log le regole violate (descrizione e dettaglio)
+          grep -A12 'status="failed"' verapdf-report.xml | head -80 || true
+          # Il passo riesce solo se il documento e' conforme
+          grep -q 'isCompliant="true"' verapdf-report.xml
 
       - name: Carica il PDF come artefatto
         if: always()
@@ -33,5 +36,5 @@ jobs:
           name: main-pdf
           path: |
             main.pdf
-            verapdf-report.txt
+            verapdf-report.xml
           if-no-files-found: ignore
