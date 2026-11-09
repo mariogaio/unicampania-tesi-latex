@@ -22,7 +22,7 @@ jobs:
 
       - name: Valida PDF/A-1b con veraPDF
         run: |
-          docker run --rm -v "$PWD:/data" verapdf/cli:v1.28.2 -f 1b --format text /data/main.pdf | tee verapdf-report.txt
+          docker run --rm -v "$PWD:/data" verapdf/cli:v1.28.2 -f 1b --format text -v /data/main.pdf | tee verapdf-report.txt
           # veraPDF stampa "PASS <file>" se il documento e' conforme, "FAIL <file>" altrimenti
           grep -q '^PASS' verapdf-report.txt
 
