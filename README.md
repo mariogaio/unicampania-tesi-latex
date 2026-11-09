@@ -2,25 +2,25 @@
 
 Un punto di partenza per scrivere la tesi in LaTeX. Produce un PDF con frontespizio, riassunto, indice, elenco di figure e tabelle, capitoli, appendici e bibliografia. Può anche produrre un file **PDF/A-1b**, il formato per l'archiviazione.
 
-Funziona per la tesi di specializzazione e si adatta ad altri corsi (laurea, magistrale, dottorato).
+Ho progettato questo template parallelamente alla stesura della mia tesi di specializzazione ma si adatta ad altri corsi (laurea triennale, magistrale, dottorato).
 
 ![Anteprima del template: frontespizio, epigrafe, indice, elenco delle abbreviazioni, capitolo di esempio, appendice, bibliografia e ringraziamenti](docs/anteprima.png)
 
-Vuoi vedere il risultato completo? Apri il [PDF d'esempio](docs/esempio.pdf), compilato con tutte le pagine facoltative attive.
+Se vuoi vedere il risultato completo del PDF compilato con tutte le pagine facoltative, apri il [PDF d'esempio](docs/esempio.pdf).
 
-> **Progetto non ufficiale.** Non è un modello approvato dall'Ateneo o da una Scuola. Prima di consegnare, controlla frontespizio, margini e formato con la tua Segreteria o Biblioteca.
+> Questo è un **progetto non ufficiale**. Non è un modello approvato dall'Ateneo o da un Dipartimento o da una Scuola di Specializzazione/Dottorato. Prima di consegnare, controlla frontespizio, margini e formato con la Segreteria.
 
 ## Cosa serve
 
 1. **Una distribuzione LaTeX**: [TeX Live](https://tug.org/texlive/) (2023 o successiva) oppure MiKTeX. Deve includere `pdflatex`, `biber` e `latexmk`.
-2. **Un editor di testo: consiglio [Visual Studio Code](https://code.visualstudio.com/)** con l'estensione gratuita **LaTeX Workshop**. È gratuito, funziona su Windows, macOS e Linux, compila con un clic e mostra il PDF accanto al testo.
+2. **Un editor di testo: consiglio [Visual Studio Code](https://code.visualstudio.com/)** con l'estensione gratuita **LaTeX Workshop**. È gratuito, funziona su Windows, macOS e Linux, compila con un clic e mostra il PDF accanto al testo. Io ho lavorato così.
 
-Non vuoi installare nulla? Puoi usare [Overleaf](https://www.overleaf.com/): carica lo ZIP, scegli *pdfLaTeX* come compilatore (TeX Live 2023 o successivo) e `main.tex` come file principale.
+Non vuoi installare nulla? Puoi usare [Overleaf](https://www.overleaf.com/): carica lo ZIP, scegli *pdfLaTeX* come compilatore (TeX Live 2023 o successivo) e `main.tex` come file principale. Sembra la strada più semplice, ma negli ultimi tempi Overleaf sta limitando l'utilizzo nella sua versione gratuita.
 
 ## Come iniziare
 
 1. Su GitHub clicca **Use this template** (oppure scarica lo ZIP).
-2. Metti la cartella in un **percorso corto, senza spazi e senza accenti**, ad esempio `C:\tesi\`.
+2. Metti la cartella in un **percorso corto, senza spazi e senza accenti** del tuo PC, ad esempio `C:\tesi\`.
 3. Apri la cartella con VS Code (*File → Apri cartella*).
 4. Apri `config.tex` e sostituisci i segnaposto con i tuoi dati.
 5. Apri `main.tex` e compila: clic sul pulsante verde **Build LaTeX project** in alto a destra (scegli la ricetta `latexmk`), oppure `Ctrl+Alt+B`.
@@ -63,7 +63,7 @@ Tutti i dati della tesi stanno in `config.tex`.
 
 ## Perché PDF/A-1b
 
-PDF/A è lo standard ISO per **conservare i documenti a lungo termine**. Il file contiene tutto ciò che serve per aprirsi sempre allo stesso modo, anche tra decenni: font incorporati, nessuna password, nessun contenuto esterno. La versione **1b** è la più semplice e la più compatibile, ed è quella che alcune biblioteche chiedono per il deposito delle tesi.
+PDF/A è lo standard ISO per **conservare i documenti a lungo termine**. Il file contiene tutto ciò che serve per aprirsi sempre allo stesso modo, anche tra decenni: font incorporati, nessuna password, nessun contenuto esterno. La versione **1b** è la più semplice e la più compatibile. Le Segreterie e la Biblioteca di Ateneo non richiedono questo standard, ma ritengo che sia comunque una scelta opportuna per garantire la conservazione, la leggibilità e la riproducibilità del documento nel lungo periodo.
 
 Regole da ricordare quando il PDF/A è attivo:
 
@@ -89,7 +89,7 @@ Per risparmiare tempo mentre scrivi, in `main.tex` c'è il blocco `\includeonly`
 
 Codice e testi del template: licenza [MIT](LICENSE).
 
-**Eccezione:** il logo dell'Università (`FIGURE/logo_unicampania.png`) è un marchio dell'Ateneo. Non è coperto dalla licenza MIT e resta soggetto alle regole d'uso dell'Università. Controlla di poterlo usare prima di diffondere il tuo documento.
+**Eccezione:** il logo dell'Università (`FIGURE/logo_unicampania.png`) è un marchio dell'Ateneo. Non è coperto dalla licenza MIT e resta soggetto alle regole d'uso dell'Università.
 
 ## Contribuire
 
