@@ -1,8 +1,8 @@
 # Template LaTeX per tesi — Università della Campania "Luigi Vanvitelli"
 
-Un punto di partenza per scrivere la tesi in LaTeX. Produce un PDF con frontespizio, riassunto, indice, elenco di figure e tabelle, capitoli, appendici e bibliografia. Può anche produrre un file **PDF/A-1b**, il formato per l'archiviazione.
+Questo template è un punto di partenza per scrivere la tesi in LaTeX. Produce un PDF con frontespizio, riassunto, indice, elenco di figure e tabelle, capitoli, appendici e bibliografia. Può anche produrre un file **PDF/A-1b**, il formato per l'archiviazione.
 
-Ho progettato questo template parallelamente alla stesura della mia tesi di specializzazione ma si adatta ad altri corsi (laurea triennale, magistrale, dottorato).
+Ho progettato questo template parallelamente alla stesura della mia tesi di specializzazione ma si adatta anche ad altri corsi (laurea triennale, magistrale, dottorato).
 
 ![Anteprima del template: frontespizio, epigrafe, indice, elenco delle abbreviazioni, capitolo di esempio, appendice, bibliografia e ringraziamenti](docs/anteprima.png)
 
