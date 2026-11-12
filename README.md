@@ -4,6 +4,8 @@ Questo template è un punto di partenza per scrivere la tesi in LaTeX. Produce u
 
 Ho progettato questo template parallelamente alla stesura della mia tesi di specializzazione ma si adatta anche ad altri corsi (laurea triennale, magistrale, dottorato).
 
+Usare LaTeX per scrivere la tesi ha dei pro (tanti) e dei contro (pochi e superabili, secondo me). Se vuoi decidere consapevolmente se LaTeX fa al caso tuo, ti invito a leggere una [lista esaustiva di pro e contro](https://www.scijournal.org/articles/pros-and-cons-of-using-latex).
+
 ![Anteprima del template: frontespizio, epigrafe, indice, elenco delle abbreviazioni, capitolo di esempio, appendice, bibliografia e ringraziamenti](docs/anteprima.png)
 
 Se vuoi vedere il risultato completo del PDF compilato con tutte le pagine facoltative, apri il [PDF d'esempio](docs/esempio.pdf).
